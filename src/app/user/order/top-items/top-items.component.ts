@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
-import { ProductService } from 'src/app/services/product/product.service';
+import { Product } from 'src/app/user/models/product.model';
+import { ProductService } from '../../services/product/product.service';
 
 @Component({
   selector: 'app-top-items',

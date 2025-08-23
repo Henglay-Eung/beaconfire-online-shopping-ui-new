@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from './user/product/product.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartComponent } from './user/shopping-cart/shopping-cart.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { OrderComponent } from './order/order.component';
-import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { ProductDetailComponent } from './user/product-detail/product-detail.component';
+import { OrderComponent } from './user/order/order.component';
+import { OrderDetailComponent } from './user/order-detail/order-detail.component';
 
 const routes: Routes = [
   {
