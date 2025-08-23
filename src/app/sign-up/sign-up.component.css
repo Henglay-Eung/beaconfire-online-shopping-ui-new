@@ -1,0 +1,28 @@
+.login-layout {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;    
+
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 25%;
+  
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.d-block {
+    display: block;
+}
+
+.button {
+  width: 100%;
+}
+
+.form {
+  width: 80%;
+}

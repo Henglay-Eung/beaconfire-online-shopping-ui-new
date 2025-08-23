@@ -1,0 +1,31 @@
+
+<div class="order-layout">
+    <h2 style="text-align: center;">Order details</h2>
+    <p><strong>Order ID:</strong> {{ orderDetails?.orderId }}</p>
+    <p><strong>Date placed:</strong> {{ orderDetails?.datePlaced }}</p>
+    <p><strong>Status:</strong> {{ orderDetails?.orderStatus }}</p>
+    <!-- <p><strong>Retail Price:</strong> ${{ product?.retailPrice }}</p> -->
+  <div *ngFor="let item of orderDetails?.orderItems" class="card mb-3 p-3 d-flex justify-content-between align-items-center shadow-sm">
+    <div>
+      <h5 class="mb-1"><strong>Item #{{ item.itemId }}</strong></h5>
+      <p class="mb-0">Product ID: {{ item.productId }}</p>
+      <p class="mb-0">Quantity: {{ item.quantity }}</p>
+      <p class="mb-0">Purchase Price: ${{ item.purchasePrice }}</p>
+      <p class="mb-0">Wholesale Price: ${{ item.wholesalePrice }}</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="text-end">
+      <button class="btn btn-link p-0 mb-1" (click)="openProductDetail(item.productId)">
+        View Product
+      </button>
+    </div>
+  </div>
+
+  <!-- Cancel Button -->
+  <div class="mt-4 text-center">
+    <button class="btn btn-danger" (click)="cancelOrder(orderDetails?.orderId)" [disabled]="orderDetails?.orderStatus === 'Cancelled'">
+      Cancel Order
+    </button>
+  </div>
+</div>

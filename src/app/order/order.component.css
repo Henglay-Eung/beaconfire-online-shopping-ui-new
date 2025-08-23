@@ -1,0 +1,15 @@
+table {
+  width:100%;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 3em;
+}
+
+.button-style, .button-style a {
+  background-color: #005cbb;
+  color: white;
+  text-decoration: none;
+}
