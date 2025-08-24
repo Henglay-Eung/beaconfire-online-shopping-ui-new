@@ -1,0 +1,98 @@
+<div class="container">
+<h1 style="text-align: center;">Most profitable product list</h1>
+<table mat-table [dataSource]="productProfitList" class="mat-elevation-z8">
+    <ng-container matColumnDef="productId">
+        <th mat-header-cell *matHeaderCellDef> Product ID </th>
+        <td mat-cell *matCellDef="let product"> {{product.productId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let product"> {{product.name}}</td>
+    </ng-container>
+        <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let product"> {{product.description}}</td>
+    </ng-container>
+        <ng-container matColumnDef="retailPrice">
+        <th mat-header-cell *matHeaderCellDef> Retail price</th>
+        <td mat-cell *matCellDef="let product"> {{product.retailPrice}}</td>
+    </ng-container>
+    <ng-container matColumnDef="wholesalePrice">
+        <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
+        <td mat-cell *matCellDef="let product"> {{product.wholesalePrice}}</td>
+    </ng-container>
+        <ng-container matColumnDef="profit">
+        <th mat-header-cell *matHeaderCellDef> Profit </th>
+        <td mat-cell *matCellDef="let product"> {{product.profit}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="productProfitDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: productProfitDisplayedColumns;"></tr>
+</table>
+
+</div>
+
+<div class="container">
+<h1 style="text-align: center;">Top 3 most purchased product list</h1>
+<table mat-table [dataSource]="top3ProductList" class="mat-elevation-z8">
+    <ng-container matColumnDef="productId">
+        <th mat-header-cell *matHeaderCellDef> Product ID </th>
+        <td mat-cell *matCellDef="let product"> {{product.productId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let product"> {{product.name}}</td>
+    </ng-container>
+        <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let product"> {{product.description}}</td>
+    </ng-container>
+        <ng-container matColumnDef="retailPrice">
+        <th mat-header-cell *matHeaderCellDef> Retail price</th>
+        <td mat-cell *matCellDef="let product"> {{product.retailPrice}}</td>
+    </ng-container>
+    <ng-container matColumnDef="wholesalePrice">
+        <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
+        <td mat-cell *matCellDef="let product"> {{product.wholesalePrice}}</td>
+    </ng-container>
+    <ng-container matColumnDef="saleCount">
+        <th mat-header-cell *matHeaderCellDef> Sale count</th>
+        <td mat-cell *matCellDef="let product"> {{product.saleCount}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="productSaleDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: productSaleDisplayedColumns;"></tr>
+</table> 
+
+
+<div class="container">
+<h1 style="text-align: center;">Product sold list</h1>
+<table mat-table [dataSource]="productSoldList" class="mat-elevation-z8">
+    <ng-container matColumnDef="productId">
+        <th mat-header-cell *matHeaderCellDef> Product ID </th>
+        <td mat-cell *matCellDef="let product"> {{product.productId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let product"> {{product.name}}</td>
+    </ng-container>
+        <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let product"> {{product.description}}</td>
+    </ng-container>
+        <ng-container matColumnDef="retailPrice">
+        <th mat-header-cell *matHeaderCellDef> Retail price</th>
+        <td mat-cell *matCellDef="let product"> {{product.retailPrice}}</td>
+    </ng-container>
+    <ng-container matColumnDef="wholesalePrice">
+        <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
+        <td mat-cell *matCellDef="let product"> {{product.wholesalePrice}}</td>
+    </ng-container>
+        <ng-container matColumnDef="saleCount">
+        <th mat-header-cell *matHeaderCellDef> Sale count</th>
+        <td mat-cell *matCellDef="let product"> {{product.saleCount}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="productSaleDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: productSaleDisplayedColumns;"></tr>
+</table>
+
+</div>
+

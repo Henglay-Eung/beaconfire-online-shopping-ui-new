@@ -1,0 +1,42 @@
+<div class="container">
+
+<h1 style="text-align: center;">Shopping Cart</h1>
+<button class="button-style" mat-raised-button  style="margin-bottom: 1em;">
+    <a routerLink="/admin/products/add">Add New Product</a>
+</button>
+<table mat-table [dataSource]="products" class="mat-elevation-z8">
+    <ng-container matColumnDef="productId">
+        <th mat-header-cell *matHeaderCellDef> Product ID </th>
+        <td mat-cell *matCellDef="let product"> {{product.productId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let product"> {{product.name}}</td>
+    </ng-container>
+        <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let product"> {{product.description}}</td>
+    </ng-container>
+        <ng-container matColumnDef="retailPrice">
+        <th mat-header-cell *matHeaderCellDef> Retail price</th>
+        <td mat-cell *matCellDef="let product"> {{product.retailPrice}}</td>
+    </ng-container>
+    <ng-container matColumnDef="wholesalePrice">
+        <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
+        <td mat-cell *matCellDef="let product"> {{product.wholesalePrice}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let product">
+            <button class="button-style" mat-raised-button style="margin-right: 0.5em;">
+                <a routerLink="/products/{{product.productId}}">View</a>
+            </button>
+            <button class="button-style" mat-raised-button>Edit</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+</div>
+

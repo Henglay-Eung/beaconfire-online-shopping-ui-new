@@ -24,4 +24,5 @@ export class ProductService {
     // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
     return of(this.products).pipe(map(products => products.find(product => product.productId === id)));
   }
+  
 }

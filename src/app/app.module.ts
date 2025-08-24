@@ -13,13 +13,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatIconModule} from '@angular/material/icon';
-import { WatchlistComponent } from './watchlist/watchlist.component';
+import { WatchlistComponent } from './user/watchlist/watchlist.component';
 import { ShoppingCartComponent } from './user/shopping-cart/shopping-cart.component';
 import { ProductDetailComponent } from './user/product-detail/product-detail.component';
 import { MatCardModule} from '@angular/material/card';
 import { OrderComponent } from './user/order/order.component';
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
 import { TopItemsComponent } from './user/order/top-items/top-items.component';
+import { AdminOrderComponent } from './admin/order/admin-order.component';
+import { AdminTopItemsComponent } from './admin/admin-top-items/admin-top-items.component';
+import { HomepageComponent } from './admin/homepage/homepage.component';
+import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
+import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+import { AdminProductDetailsComponent } from './admin/admin-product-details/admin-product-details.component';
+import { AdminAddProductComponent } from './admin/admin-add-product/admin-add-product.component';
+import { AdminUpdateProductComponent } from './admin/admin-update-product/admin-update-product.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +41,14 @@ import { TopItemsComponent } from './user/order/top-items/top-items.component';
     OrderComponent,
     OrderDetailComponent,
     TopItemsComponent,
+    AdminOrderComponent,
+    AdminTopItemsComponent,
+    HomepageComponent,
+    AdminOrderDetailsComponent,
+    AdminProductComponent,
+    AdminProductDetailsComponent,
+    AdminAddProductComponent,
+    AdminUpdateProductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,30 @@
+<div class="container">
+<h1 style="text-align: center;">Order list</h1>
+<table mat-table [dataSource]="orders" class="mat-elevation-z8">
+    <ng-container matColumnDef="orderId">
+        <th mat-header-cell *matHeaderCellDef> Order ID </th>
+        <td mat-cell *matCellDef="let order"> {{order.orderId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="datePlaced">
+        <th mat-header-cell *matHeaderCellDef> Date placed</th>
+        <td mat-cell *matCellDef="let order"> {{order.datePlaced}}</td>
+    </ng-container>
+    <ng-container matColumnDef="orderStatus">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let order"> {{order.orderStatus}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let order">
+            <button class="button-style" mat-raised-button style="margin-right: 8px;">
+                <a routerLink="/orders/{{order.orderId}}">View</a>
+            </button>
+             <button class="button-style" mat-raised-button style="margin-right: 8px;">Complete</button>
+            <button class="button-style" mat-raised-button>Cancel</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
