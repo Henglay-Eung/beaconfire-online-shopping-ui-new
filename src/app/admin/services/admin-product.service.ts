@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, map } from 'rxjs';
-import { Product } from 'src/app/user/models/product.model';
+import { Observable, of, map, retryWhen } from 'rxjs';
+import { AdminProduct, CreateProduct, Product, UpdateProduct } from 'src/app/user/models/product.model';
 import { ProductSold } from '../models/product-sold.model';
 import { ProductProfit } from '../models/product-profit.model';
+import { BASE_ADMIN_API_ENDPOINT, BASE_API_ENDPOINT}from '../../config/base-api';
+import { ApiResponse } from 'src/app/models/api-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,9 @@ import { ProductProfit } from '../models/product-profit.model';
 export class AdminProductService {
 
   constructor(private http: HttpClient) { }
+
+  CURR_ENDPOINT = 'products/';
+
   products: Product[] = [{
     productId: 1,
     name: "Juice",
@@ -30,6 +35,7 @@ export class AdminProductService {
     }
   ]
 
+
   productProfitList: ProductProfit[] = [
     {
       productId: 1,
@@ -41,14 +47,12 @@ export class AdminProductService {
     }
   ]
 
-  getProductList(): Observable<Product[]> {
-    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
-    return of(this.products);
+  getProductList(): Observable<ApiResponse<AdminProduct[]>> {
+    return this.http.get<ApiResponse<AdminProduct[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT);
   }
 
-  getProductById(id: number): Observable<Product | undefined> {
-    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
-    return of(this.products).pipe(map(products => products.find(product => product.productId === id)));
+  getProductById(id: number): Observable<ApiResponse<AdminProduct>> {
+    return this.http.get<ApiResponse<AdminProduct>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + id);
   }
 
   getProductProfitList(): Observable<ProductProfit[]> {
@@ -64,6 +68,14 @@ export class AdminProductService {
   getProductSoldList(): Observable<ProductSold[]> {
     // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
     return of(this.productSoldList);
+  }
+
+  addNewProduct(product: CreateProduct) {
+    return this.http.post(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT, product);
+  }
+
+  updateProduct(id: number, product: UpdateProduct) {
+    return this.http.patch(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + id, product);
   }
   
 }

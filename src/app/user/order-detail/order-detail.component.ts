@@ -28,11 +28,8 @@ export class OrderDetailComponent implements OnInit {
     if (id === undefined) {
       return;
     }
-    this.orderService.cancelOrderById(id).subscribe(data => {
-      if (data) {
+    this.orderService.cancelOrderById(id).subscribe(() => {
         alert("succeded");
-      }
-      return data;
     })
   }
 }

@@ -1,6 +1,9 @@
 <div class="container">
 <h1 style="text-align: center;">Shopping Cart</h1>
-<table mat-table [dataSource]="products" class="mat-elevation-z8">
+<button class="button-style" mat-raised-button  style="margin-bottom: 1em;" (click)="placeAnOrder()">
+    Place an order
+</button>
+<table mat-table [dataSource]="shoppingCart.shoppingCartItems" class="mat-elevation-z8">
     <ng-container matColumnDef="productId">
         <th mat-header-cell *matHeaderCellDef> Product ID </th>
         <td mat-cell *matCellDef="let product"> {{product.productId}} </td>
@@ -21,10 +24,14 @@
         <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
         <td mat-cell *matCellDef="let product"> {{product.wholesalePrice}}</td>
     </ng-container>
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity</th>
+        <td mat-cell *matCellDef="let product"> {{product.quantity}}</td>
+    </ng-container>
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let product">
-            <button class="button-style" mat-raised-button>Remove</button>
+            <button class="button-style" mat-raised-button (click)="removeAnItem(product.productId)">Remove</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

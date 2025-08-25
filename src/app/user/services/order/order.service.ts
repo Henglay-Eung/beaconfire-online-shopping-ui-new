@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, map } from 'rxjs';
 import { OrderDetails } from 'src/app/user/models/order-details.model';
-import { Order } from 'src/app/user/models/order.model';
+import { CreateOrder, Order } from 'src/app/user/models/order.model';
+import { BASE_API_ENDPOINT} from '../../../config/base-api';
+import { Product } from '../../models/product.model';
+import { ApiResponse } from 'src/app/models/api-response.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +14,11 @@ import { Order } from 'src/app/user/models/order.model';
 export class OrderService {
 
  constructor(private http: HttpClient) { }
-  orders: Order[] = [{
-    orderId: 1,
-    datePlaced: new Date(Date.now()),
-    orderStatus: "Completed"
-  }];
-  getOrderList(): Observable<Order[]> {
-    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
-    return of(this.orders);
+
+ CURR_ENDPOINT = 'orders/';
+
+  getOrderList(): Observable<ApiResponse<Order[]>> {
+    return this.http.get<ApiResponse<Order[]>>(BASE_API_ENDPOINT + this.CURR_ENDPOINT);
   }
 
   orderDetails: OrderDetails = {
@@ -54,7 +55,12 @@ export class OrderService {
     return of(this.orderDetails);
   }
 
-  cancelOrderById(id: number): Observable<boolean> {
-    return of(true);
+  cancelOrderById(id: number): Observable<void> {
+    console.log(BASE_API_ENDPOINT + this.CURR_ENDPOINT + id)
+    return this.http.patch<void>(BASE_API_ENDPOINT + this.CURR_ENDPOINT + 'cancel/' + id, {});
+  }
+
+  placeAnOrder(item: CreateOrder): Observable<OrderDetails> {
+    return this.http.post<OrderDetails>(BASE_API_ENDPOINT + this.CURR_ENDPOINT, item);
   }
 }

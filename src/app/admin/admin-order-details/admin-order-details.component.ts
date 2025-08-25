@@ -28,11 +28,8 @@ export class AdminOrderDetailsComponent implements OnInit {
     if (id === undefined) {
       return;
     }
-    this.orderService.cancelOrderById(id).subscribe(data => {
-      if (data) {
-        alert("succeded");
-      }
-      return data;
+    this.orderService.cancelOrderById(id).subscribe(() => {
+      alert("succeded");
     })
   }
 

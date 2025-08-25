@@ -1,5 +1,6 @@
 <div class="container">
-<h1 style="text-align: center;">Shopping Cart</h1>
+<h1 style="text-align: center;">Products</h1>
+
 <table mat-table [dataSource]="products" class="mat-elevation-z8">
     <ng-container matColumnDef="productId">
         <th mat-header-cell *matHeaderCellDef> Product ID </th>
@@ -21,14 +22,23 @@
         <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
         <td mat-cell *matCellDef="let product"> {{product.wholesalePrice}}</td>
     </ng-container>
+        <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let product">
+            <mat-form-field class="d-block">
+                <input matInput type="number" [formControl]="getQuantityControl(product.productId)" min="1">
+            </mat-form-field>
+          
+        </td>
+    </ng-container>
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let product">
             <button class="button-style" mat-raised-button style="margin-right: 0.5em;">
                 <a routerLink="/products/{{product.productId}}">View</a>
             </button>
-            <button class="button-style" mat-raised-button style="margin-right: 0.5em;">Add to Shopping Cart</button>
-            <button class="button-style" mat-raised-button>Add to Watchlust</button>
+            <button class="button-style" mat-raised-button style="margin-right: 0.5em;" (click)="addToShoppingCart(product.productId)">Add to Shopping Cart</button>
+            <button class="button-style" mat-raised-button (click)="addToWatchlist(product.productId)">Add to Watchlist</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

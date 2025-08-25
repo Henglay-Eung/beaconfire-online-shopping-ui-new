@@ -24,7 +24,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let product">
-            <button class="button-style" mat-raised-button>Remove</button>
+            <button class="button-style" mat-raised-button (click)="removeProduct(product.productId)">Remove</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

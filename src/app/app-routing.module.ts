@@ -9,24 +9,51 @@ import { ProductDetailComponent } from './user/product-detail/product-detail.com
 import { OrderComponent } from './user/order/order.component';
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
 import { AdminOrderComponent } from './admin/order/admin-order.component';
-import { HomepageComponent } from './admin/homepage/homepage.component';
-import { TopItemsComponent } from './user/order/top-items/top-items.component';
+import { AdminHomepageComponent } from './admin/homepage/admin-homepage.component';
 import { AdminTopItemsComponent } from './admin/admin-top-items/admin-top-items.component';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { AdminProductDetailsComponent } from './admin/admin-product-details/admin-product-details.component';
 import { AdminAddProductComponent } from './admin/admin-add-product/admin-add-product.component';
 import { AdminUpdateProductComponent } from './admin/admin-update-product/admin-update-product.component';
+import { HomepageComponent } from './user/homepage/homepage.component';
+import { InsightsComponent } from './user/insights/insights.component';
 
 const routes: Routes = [
   {
-    path: 'products',
-    component: ProductComponent
-  },
-    {
-    path: 'products/:id',
-    component: ProductDetailComponent
-  },
+    path: '',
+    component: HomepageComponent,
+    children: [
+      {
+        path: '',
+        component: InsightsComponent
+      },
+      {
+        path: 'products',
+        component: ProductComponent
+      },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent
+      },
+      {
+        path: 'shopping-cart',
+        component: ShoppingCartComponent
+      },
+      {
+        path: 'watchlist',
+        component: WatchlistComponent
+      },
+      {
+        path: 'orders',
+        component: OrderComponent
+      },  
+      {
+        path: 'orders/:orderId',
+        component: OrderDetailComponent
+      }, 
+    ]
+  }, 
   {
     path: 'login',
     component: LoginComponent
@@ -36,24 +63,8 @@ const routes: Routes = [
     component: SignUpComponent
   },
   {
-    path: 'shopping-cart',
-    component: ShoppingCartComponent
-  },
-  {
-    path: 'watchlist',
-    component: WatchlistComponent
-  },
-  {
-    path: 'orders',
-    component: OrderComponent
-  },  
-  {
-    path: 'orders/:orderId',
-    component: OrderDetailComponent
-  }, 
-  {
     path: 'admin',
-    component: HomepageComponent,
+    component: AdminHomepageComponent,
     children: [
       {
         path: 'dashboard',

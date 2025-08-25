@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
+
+  loginForm = new FormGroup({
+    username: new FormControl(),
+    password: new FormControl()
+  });
 
   ngOnInit(): void {
+  }
+
+  login(): void {
+    const {username, password} = this.loginForm.value;
+    this.authService.login(username, password).subscribe(data => {
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('role', data.role);
+      this.router.navigate(['orders']);
+    })
   }
 
 }

@@ -11,3 +11,9 @@ interface OrderItem {
     wholesalePrice: number;
     productId: number;
 }
+
+
+export interface CreateOrderItem {
+    productId: number;
+    quantity: number;
+}

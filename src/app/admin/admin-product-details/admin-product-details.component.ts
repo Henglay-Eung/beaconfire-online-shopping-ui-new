@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminProductService } from '../services/admin-product.service';
-import { Product } from 'src/app/user/models/product.model';
+import { AdminProduct, Product } from 'src/app/user/models/product.model';
 
 @Component({
   selector: 'app-admin-product-details',
@@ -12,11 +12,11 @@ export class AdminProductDetailsComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private adminProductService: AdminProductService) { }
   id: number = 0;
-  product: Product | undefined;
+  product: AdminProduct | undefined;
   ngOnInit(): void {
     this.id = Number(this.router.snapshot.params['id']);
-    this.adminProductService.getProductById(this.id).subscribe(data => {
-      this.product = data
+    this.adminProductService.getProductById(this.id).subscribe(res => {
+      this.product = res.data;
     });
   }
 }

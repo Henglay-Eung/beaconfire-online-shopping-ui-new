@@ -1,32 +1,27 @@
 
 <div class="login-layout">
     <h2>Add New Product</h2>
-    <form class="form">
+    <form class="form" [formGroup]="productForm" (ngSubmit)="add()">
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Name: </mat-label>
-            <input type="text" matInput placeholder="Name">
+            <input type="text" matInput placeholder="Name" formControlName="name">
         </mat-form-field>
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Description: </mat-label>
-            <input type="text" matInput placeholder="Description" >
+            <input type="text" matInput placeholder="Description"formControlName="description" >
         </mat-form-field>
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Retail Price: </mat-label>
-            <input type="number" matInput placeholder="1" >
+            <input type="number" matInput placeholder="1" formControlName="retailPrice">
         </mat-form-field>
         <mat-form-field class="d-block" appearance="fill">
-            <mat-label>Whoesale price: </mat-label>
-            <input type="number" matInput placeholder="1" >
+            <mat-label>Wholesale price: </mat-label>
+            <input type="number" matInput placeholder="1" formControlName="wholesalePrice">
         </mat-form-field>
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Quantity: </mat-label>
-            <input type="number" matInput placeholder="1" >
+            <input type="number" matInput placeholder="1" formControlName="quantity">
         </mat-form-field>
-        <button mat-flat-button color="primary" class="button">Add</button>
-        <!-- <p style="margin-top: 1rem; text-align: center;">
-            Don't have an account? 
-            <a routerLink="/sign-up" style="text-decoration:none">Sign up</a>
-        </p> -->
-        
+        <button mat-flat-button color="primary" class="button" type="submit">Add</button>
     </form>
 </div>

@@ -25,13 +25,19 @@
         <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
         <td mat-cell *matCellDef="let product"> {{product.wholesalePrice}}</td>
     </ng-container>
+        <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let product"> {{product.quantity}}</td>
+    </ng-container>
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let product">
             <button class="button-style" mat-raised-button style="margin-right: 0.5em;">
-                <a routerLink="/products/{{product.productId}}">View</a>
+                <a routerLink="/admin/products/{{product.productId}}">View</a>
             </button>
-            <button class="button-style" mat-raised-button>Edit</button>
+            <button class="button-style" mat-raised-button>
+                <a routerLink="/admin/products/update/{{product.productId}}">Edit</a>
+            </button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -17,8 +17,8 @@ export class AdminOrderComponent implements OnInit {
   orders: Order[] = [];
 
   ngOnInit(): void {
-    this.orderService.getOrderList().subscribe(data => {
-      this.orders = data;
+    this.orderService.getOrderList().subscribe(res => {
+      this.orders = res.data;
     })
   }
 

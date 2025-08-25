@@ -15,8 +15,18 @@ export class OrderComponent implements OnInit {
   orders: Order[] = [];
 
   ngOnInit(): void {
-    this.orderService.getOrderList().subscribe(data => {
-      this.orders = data;
+    this.orderService.getOrderList().subscribe(res => {
+      this.orders = res.data;
+    })
+  }
+
+  cancelOrder(id: number | undefined ) {
+    if (id === undefined) {
+      return;
+    }
+    this.orderService.cancelOrderById(id).subscribe(() => {
+      this.orders = this.orders.filter(order => order.orderId !== id)
+        alert("succeded");
     })
   }
 

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductComponent } from './user/product/product.component';
 import { MatTableModule }  from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -19,15 +19,18 @@ import { ProductDetailComponent } from './user/product-detail/product-detail.com
 import { MatCardModule} from '@angular/material/card';
 import { OrderComponent } from './user/order/order.component';
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
-import { TopItemsComponent } from './user/order/top-items/top-items.component';
 import { AdminOrderComponent } from './admin/order/admin-order.component';
 import { AdminTopItemsComponent } from './admin/admin-top-items/admin-top-items.component';
-import { HomepageComponent } from './admin/homepage/homepage.component';
+import { AdminHomepageComponent } from './admin/homepage/admin-homepage.component';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { AdminProductDetailsComponent } from './admin/admin-product-details/admin-product-details.component';
 import { AdminAddProductComponent } from './admin/admin-add-product/admin-add-product.component';
 import { AdminUpdateProductComponent } from './admin/admin-update-product/admin-update-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './auth.interceptor';
+import { HomepageComponent } from './user/homepage/homepage.component';
+import { InsightsComponent } from './user/insights/insights.component';
 
 @NgModule({
   declarations: [
@@ -40,15 +43,18 @@ import { AdminUpdateProductComponent } from './admin/admin-update-product/admin-
     ProductDetailComponent,
     OrderComponent,
     OrderDetailComponent,
-    TopItemsComponent,
+    HomepageComponent,
+
+
     AdminOrderComponent,
     AdminTopItemsComponent,
-    HomepageComponent,
     AdminOrderDetailsComponent,
     AdminProductComponent,
     AdminProductDetailsComponent,
     AdminAddProductComponent,
-    AdminUpdateProductComponent
+    AdminUpdateProductComponent,
+    AdminHomepageComponent,
+    InsightsComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +66,16 @@ import { AdminUpdateProductComponent } from './admin/admin-update-product/admin-
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
