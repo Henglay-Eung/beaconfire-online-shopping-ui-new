@@ -12,7 +12,7 @@ export class AdminInsightComponent implements OnInit {
 
   constructor(private adminProductService: AdminProductService) { }
     productProfitList: ProductProfit[] = [];
-    productProfitDisplayedColumns: string[] = ['productId', 'name', 'description', 'retailPrice', 'wholesalePrice', 'profit'];
+    productProfitDisplayedColumns: string[] = ['productName', 'productDescription', 'retailPrice', 'wholesalePrice', 'margin'];
 
     top3ProductList: ProductSold[] = [];
  

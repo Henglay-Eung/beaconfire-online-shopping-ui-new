@@ -48,9 +48,8 @@ export class AdminOrderService {
     ]
   }
 
-  getOrderDetailsById(id: number): Observable<OrderDetails> {
-    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
-    return of(this.orderDetails);
+  getOrderDetailsById(id: number): Observable<ApiResponse<OrderDetails>> {
+    return this.http.get<ApiResponse<OrderDetails>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + id);
   }
 
   completeOrderById(id: number): Observable<void> {

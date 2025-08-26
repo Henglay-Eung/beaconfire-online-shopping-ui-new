@@ -81,7 +81,7 @@ const routes: Routes = [
         component: AdminOrderComponent,
       },
       {
-        path: 'orders/:orderId',
+        path: 'orders/:id',
         component: AdminOrderDetailsComponent,
       },
       {
