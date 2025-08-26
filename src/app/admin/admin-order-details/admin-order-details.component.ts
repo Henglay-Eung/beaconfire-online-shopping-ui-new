@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { error } from 'console';
 import { OrderDetails } from 'src/app/user/models/order-details.model';
 import { OrderService } from 'src/app/user/services/order/order.service';
 
@@ -15,13 +16,13 @@ export class AdminOrderDetailsComponent implements OnInit {
   id: number = 0;
   ngOnInit(): void {
     this.id = Number(this.activatedRoute.snapshot.params['id']);
-    this.orderService.getOrderDetailsById(this.id).subscribe(data => {
-      this.orderDetails = data;
+    this.orderService.getOrderDetailsById(this.id).subscribe(res => {
+      this.orderDetails = res.data;
     })
   }
 
   openProductDetail(id: number): void {
-    this.router.navigate([`/products/${id}`]);
+    this.router.navigate([`/admin/products/${id}`]);
   }
 
   cancelOrder(id: number | undefined ) {
@@ -30,6 +31,8 @@ export class AdminOrderDetailsComponent implements OnInit {
     }
     this.orderService.cancelOrderById(id).subscribe(() => {
       alert("succeded");
+    }, error => {
+      alert(error.error)
     })
   }
 

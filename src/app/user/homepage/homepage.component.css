@@ -37,14 +37,9 @@
   padding: 0;
 }
 
-.nav-user p {
+.username {
   color: white;
   margin: 0;
   padding: 0.5em 1em;
 }
 
-.nav-user p:hover {
-  color: #005cbb;
-  background-color: white;
-  cursor: pointer;
-}

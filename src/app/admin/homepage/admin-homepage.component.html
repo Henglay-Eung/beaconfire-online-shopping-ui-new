@@ -4,14 +4,23 @@
 <div class="navbar">
     <ul class="nav-items">
         <li class="nav-item">
+            <a routerLink="/admin/">Insights</a>
+        </li>
+        <li class="nav-item">
             <a routerLink="/admin/orders">Orders</a>
         </li>
         <li class="nav-item">
             <a routerLink="/admin/products">Products</a>
         </li>
     </ul>
-    <ul class="nav-user">
-        <!-- <p>Current user: {{username}}</p> -->
+    <ul class="nav-items" style="justify-items: center; display: flex;"> 
+        <li class="nav-item ">
+            <p class="username">Current user: {{username}}</p>
+        </li>
+         <li class="nav-item">
+            <button mat-flat-button color="primary" (click)="logout()">Logout</button>
+        </li>
+       
     </ul>
 </div>
 

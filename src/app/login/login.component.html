@@ -1,7 +1,7 @@
 
 <div class="login-layout">
     <h2>Login</h2>
-    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="loginForm.valid && login()" >
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Username: </mat-label>
             <input type="=text" matInput placeholder="Username" formControlName="username">
@@ -10,10 +10,10 @@
             <mat-label>Password: </mat-label>
             <input type="password" matInput placeholder="Username" formControlName="password">
         </mat-form-field>
-        <button mat-flat-button color="primary" class="button" type="submit">Login</button>
+        <button mat-flat-button color="primary" class="button" type="submit" [disabled]="!loginForm.valid">Login</button>
         <p style="margin-top: 1rem; text-align: center;">
             Don't have an account? 
-            <a routerLink="/sign-up" style="text-decoration:none">Sign up</a>
+            <a routerLink="/sign-up" style="text-decoration:none" >Sign up</a>
         </p>
         
     </form>

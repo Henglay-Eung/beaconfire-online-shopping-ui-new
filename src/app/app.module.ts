@@ -20,7 +20,6 @@ import { MatCardModule} from '@angular/material/card';
 import { OrderComponent } from './user/order/order.component';
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
 import { AdminOrderComponent } from './admin/order/admin-order.component';
-import { AdminTopItemsComponent } from './admin/admin-top-items/admin-top-items.component';
 import { AdminHomepageComponent } from './admin/homepage/admin-homepage.component';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
@@ -30,6 +29,7 @@ import { AdminUpdateProductComponent } from './admin/admin-update-product/admin-
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
 import { HomepageComponent } from './user/homepage/homepage.component';
+import { AdminInsightComponent } from './admin/admin-insight/admin-insight.component';
 import { InsightsComponent } from './user/insights/insights.component';
 
 @NgModule({
@@ -44,17 +44,16 @@ import { InsightsComponent } from './user/insights/insights.component';
     OrderComponent,
     OrderDetailComponent,
     HomepageComponent,
-
+    InsightsComponent,
 
     AdminOrderComponent,
-    AdminTopItemsComponent,
     AdminOrderDetailsComponent,
     AdminProductComponent,
     AdminProductDetailsComponent,
     AdminAddProductComponent,
     AdminUpdateProductComponent,
     AdminHomepageComponent,
-    InsightsComponent
+    AdminInsightComponent
   ],
   imports: [
     BrowserModule,

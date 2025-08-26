@@ -10,7 +10,6 @@ import { OrderComponent } from './user/order/order.component';
 import { OrderDetailComponent } from './user/order-detail/order-detail.component';
 import { AdminOrderComponent } from './admin/order/admin-order.component';
 import { AdminHomepageComponent } from './admin/homepage/admin-homepage.component';
-import { AdminTopItemsComponent } from './admin/admin-top-items/admin-top-items.component';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { AdminProductDetailsComponent } from './admin/admin-product-details/admin-product-details.component';
@@ -18,11 +17,16 @@ import { AdminAddProductComponent } from './admin/admin-add-product/admin-add-pr
 import { AdminUpdateProductComponent } from './admin/admin-update-product/admin-update-product.component';
 import { HomepageComponent } from './user/homepage/homepage.component';
 import { InsightsComponent } from './user/insights/insights.component';
+import { AdminInsightComponent } from './admin/admin-insight/admin-insight.component';
+import { UserGuard } from './config/user.guard';
+import { AdminGuard } from './config/admin.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
+    canActivate: [UserGuard],
+    canActivateChild: [UserGuard],
     children: [
       {
         path: '',
@@ -49,7 +53,7 @@ const routes: Routes = [
         component: OrderComponent
       },  
       {
-        path: 'orders/:orderId',
+        path: 'orders/:id',
         component: OrderDetailComponent
       }, 
     ]
@@ -65,10 +69,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminHomepageComponent,
+    canActivate: [AdminGuard],
+    canActivateChild: [AdminGuard],
     children: [
       {
-        path: 'dashboard',
-        component: AdminTopItemsComponent,
+        path: '',
+        component: AdminInsightComponent,
       },
       {
         path: 'orders',

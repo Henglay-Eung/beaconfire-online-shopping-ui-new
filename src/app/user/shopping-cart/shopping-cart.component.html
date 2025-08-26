@@ -1,6 +1,6 @@
 <div class="container">
 <h1 style="text-align: center;">Shopping Cart</h1>
-<button class="button-style" mat-raised-button  style="margin-bottom: 1em;" (click)="placeAnOrder()">
+<button class="button-style" mat-raised-button  style="margin-bottom: 1em;" (click)="placeAnOrder()" [disabled]="shoppingCart.shoppingCartItems.length == 0">
     Place an order
 </button>
 <table mat-table [dataSource]="shoppingCart.shoppingCartItems" class="mat-elevation-z8">

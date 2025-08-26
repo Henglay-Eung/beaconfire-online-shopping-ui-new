@@ -1,24 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, map } from 'rxjs';
-import { OrderDetails } from 'src/app/user/models/order-details.model';
-import { CreateOrder, Order } from 'src/app/user/models/order.model';
-import { BASE_API_ENDPOINT} from '../../../config/base-api';
-import { Product } from '../../models/product.model';
+import { Observable, of } from 'rxjs';
+import { BASE_ADMIN_API_ENDPOINT } from 'src/app/config/base-api';
 import { ApiResponse } from 'src/app/models/api-response.model';
-
+import { OrderDetails } from 'src/app/user/models/order-details.model';
+import { Order, CreateOrder } from 'src/app/user/models/order.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class AdminOrderService {
 
  constructor(private http: HttpClient) { }
 
  CURR_ENDPOINT = 'orders/';
 
   getOrderList(): Observable<ApiResponse<Order[]>> {
-    return this.http.get<ApiResponse<Order[]>>(BASE_API_ENDPOINT + this.CURR_ENDPOINT);
+    return this.http.get<ApiResponse<Order[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT);
   }
 
   orderDetails: OrderDetails = {
@@ -50,15 +48,17 @@ export class OrderService {
     ]
   }
 
-  getOrderDetailsById(id: number): Observable<ApiResponse<OrderDetails>> {
-    return this.http.get<ApiResponse<OrderDetails>>(BASE_API_ENDPOINT + this.CURR_ENDPOINT + id);
+  getOrderDetailsById(id: number): Observable<OrderDetails> {
+    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
+    return of(this.orderDetails);
+  }
+
+  completeOrderById(id: number): Observable<void> {
+    return this.http.patch<void>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'complete/' + id, {});
   }
 
   cancelOrderById(id: number): Observable<void> {
-    return this.http.patch<void>(BASE_API_ENDPOINT + this.CURR_ENDPOINT + 'cancel/' + id, {});
+    return this.http.patch<void>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'cancel/' + id, {});
   }
 
-  placeAnOrder(item: CreateOrder): Observable<OrderDetails> {
-    return this.http.post<OrderDetails>(BASE_API_ENDPOINT + this.CURR_ENDPOINT, item);
-  }
 }

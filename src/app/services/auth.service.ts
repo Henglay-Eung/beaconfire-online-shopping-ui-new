@@ -6,6 +6,7 @@ interface LoginResponse {
   token: string;
   message: string;
   role: string;
+  username: string;
 }
 
 
@@ -18,8 +19,16 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.httpClient.post<LoginResponse>(BASE_API_ENDPOINT + 'login', {
-      username: username,
-      password: password
+      username,
+      password
+    });
+  }
+
+  signup(username: string, email: string, password: string) {
+    return this.httpClient.post<LoginResponse>(BASE_API_ENDPOINT + 'signup', {
+      username,
+      email,
+      password
     });
   }
 }

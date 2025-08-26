@@ -3,7 +3,7 @@ import { Product } from '../models/product.model';
 import { ProductService } from '../services/product/product.service';
 import { WatchlistService } from '../services/watchlist/watchlist.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateShoppingCartItem } from '../models/shopping-cart-item.model';
 
 @Component({
@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProductList().subscribe(res => {
       this.products = res.data;
-      this.products.forEach((product) => this.quantitiesForm.set(product.productId, new FormControl(1)));
+      this.products.forEach((product) => this.quantitiesForm.set(product.productId, new FormControl(1, [Validators.required, Validators.min(1)])));
     })
   }
 

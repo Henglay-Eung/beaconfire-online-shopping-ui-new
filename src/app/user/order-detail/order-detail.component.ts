@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order/order.service';
 import { OrderDetails } from '../models/order-details.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-order-detail',
@@ -10,19 +11,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OrderDetailComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private orderService: OrderService) { }
-  orderDetails: OrderDetails | null = null;
+  constructor(private activatedRoute: ActivatedRoute, private orderService: OrderService) { }
+
+  displayedColumns: string[] = ['itemId', 'productId', 'retailPrice', 'wholesalePrice', "quantity", 'actions'];
+
+  orderDetails!: OrderDetails;
   id: number = 0;
   ngOnInit(): void {
     this.id = Number(this.activatedRoute.snapshot.params['id']);
-    this.orderService.getOrderDetailsById(this.id).subscribe(data => {
-      this.orderDetails = data;
+    this.orderService.getOrderDetailsById(this.id).subscribe(res => {
+      this.orderDetails = res.data;
+      console.log(this.orderDetails.orderStatus)
     })
   }
 
-  openProductDetail(id: number): void {
-    this.router.navigate([`/products/${id}`]);
-  }
 
   cancelOrder(id: number | undefined ) {
     if (id === undefined) {

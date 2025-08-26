@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminProductService } from '../services/admin-product.service';
 import { CreateProduct, Product } from 'src/app/user/models/product.model';
 import { Router } from '@angular/router';
@@ -18,11 +18,11 @@ export class AdminAddProductComponent implements OnInit {
   ) { }
 
   productForm: FormGroup = this.fb.group({
-    name: new FormControl(),
-    description: new FormControl(),
-    retailPrice: new FormControl(),
-    wholesalePrice: new FormControl(),
-    quantity: new FormControl()
+    name: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    retailPrice: new FormControl('', [Validators.required, Validators.min(0)]),
+    wholesalePrice: new FormControl('', [Validators.required, Validators.min(0)]),
+    quantity: new FormControl('', [Validators.required, Validators.min(0)])
   });
 
 

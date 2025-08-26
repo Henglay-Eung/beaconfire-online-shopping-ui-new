@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminProductService } from '../services/admin-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminProduct, UpdateProduct } from 'src/app/user/models/product.model';
@@ -33,11 +33,11 @@ export class AdminUpdateProductComponent implements OnInit {
       const data = res.data;
       console.log(res.data)
       this.productForm = this.fb.group({
-        name: new FormControl(data.name),
-        description: new FormControl(data.description),
-        retailPrice: new FormControl(data.retailPrice),
-        wholesalePrice: new FormControl(data.wholesalePrice),
-        quantity: new FormControl(data.quantity)
+        name: new FormControl(data.name, Validators.required),
+        description: new FormControl(data.description, Validators.required),
+        retailPrice: new FormControl(data.retailPrice, [Validators.required, Validators.min(0)]),
+        wholesalePrice: new FormControl(data.wholesalePrice, [Validators.required, Validators.min(0)]),
+        quantity: new FormControl(data.quantity, [Validators.required, Validators.min(0)])
       });
     })
   }

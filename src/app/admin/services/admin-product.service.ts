@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, map, retryWhen } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AdminProduct, CreateProduct, Product, UpdateProduct } from 'src/app/user/models/product.model';
 import { ProductSold } from '../models/product-sold.model';
 import { ProductProfit } from '../models/product-profit.model';
-import { BASE_ADMIN_API_ENDPOINT, BASE_API_ENDPOINT}from '../../config/base-api';
+import { BASE_ADMIN_API_ENDPOINT}from '../../config/base-api';
 import { ApiResponse } from 'src/app/models/api-response.model';
 
 @Injectable({
@@ -55,19 +55,16 @@ export class AdminProductService {
     return this.http.get<ApiResponse<AdminProduct>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + id);
   }
 
-  getProductProfitList(): Observable<ProductProfit[]> {
-    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
-    return of(this.productProfitList);
+  getProductProfitList(): Observable<ApiResponse<ProductProfit[]>> {
+    return this.http.get<ApiResponse<ProductProfit[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'profit/3');
   }
 
-  getTop3ProductList(): Observable<ProductSold[]> {
-    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
-    return of(this.productSoldList);
+  getTop3ProductList(): Observable<ApiResponse<ProductSold[]>> {
+    return this.http.get<ApiResponse<ProductSold[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'popular/3');
   }
 
-  getProductSoldList(): Observable<ProductSold[]> {
-    // return this.http.get<Product[]>(BASE_API_ENDPOINT + 'product');
-    return of(this.productSoldList);
+  getProductSoldList(): Observable<ApiResponse<ProductSold[]>> {
+    return this.http.get<ApiResponse<ProductSold[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'sold');
   }
 
   addNewProduct(product: CreateProduct) {

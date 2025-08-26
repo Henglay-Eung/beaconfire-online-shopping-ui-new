@@ -28,3 +28,15 @@
 .form {
   width: 80%;
 }
+
+input.invalid {
+  border-radius: 1px solid #00abe1;
+}
+input.ng-valid {
+  border: 2px solid #00abe1;
+}
+.error {
+  color: red;
+  text-align: left;
+  font: 100;
+}

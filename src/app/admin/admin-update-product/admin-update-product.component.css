@@ -28,3 +28,9 @@
 .form {
   width: 80%;
 }
+
+.error {
+  color: red;
+  text-align: left;
+  font: 100;
+}

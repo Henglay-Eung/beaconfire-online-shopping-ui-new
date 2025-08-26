@@ -28,8 +28,8 @@
             <mat-form-field class="d-block">
                 <input matInput type="number" [formControl]="getQuantityControl(product.productId)" min="1">
             </mat-form-field>
-          
         </td>
+        
     </ng-container>
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Action</th>
@@ -37,7 +37,7 @@
             <button class="button-style" mat-raised-button style="margin-right: 0.5em;">
                 <a routerLink="/products/{{product.productId}}">View</a>
             </button>
-            <button class="button-style" mat-raised-button style="margin-right: 0.5em;" (click)="addToShoppingCart(product.productId)">Add to Shopping Cart</button>
+            <button class="button-style" mat-raised-button style="margin-right: 0.5em;" (click)="getQuantityControl(product.productId).valid && addToShoppingCart(product.productId)" [disabled]="!getQuantityControl(product.productId).valid">Add to Shopping Cart</button>
             <button class="button-style" mat-raised-button (click)="addToWatchlist(product.productId)">Add to Watchlist</button>
         </td>
     </ng-container>

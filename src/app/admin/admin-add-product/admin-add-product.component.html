@@ -1,10 +1,11 @@
 
 <div class="login-layout">
     <h2>Add New Product</h2>
-    <form class="form" [formGroup]="productForm" (ngSubmit)="add()">
+    <form class="form" [formGroup]="productForm" (ngSubmit)="productForm.valid && add()">
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Name: </mat-label>
             <input type="text" matInput placeholder="Name" formControlName="name">
+            
         </mat-form-field>
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Description: </mat-label>
@@ -14,14 +15,29 @@
             <mat-label>Retail Price: </mat-label>
             <input type="number" matInput placeholder="1" formControlName="retailPrice">
         </mat-form-field>
+        <ng-container *ngIf="productForm.get('retailPrice')?.touched && productForm.get('retailPrice')?.invalid">
+            <p class="error" *ngIf="productForm.get('retailPrice')?.errors?.['min']">
+                Retail price must be positive
+            </p>
+        </ng-container>
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Wholesale price: </mat-label>
             <input type="number" matInput placeholder="1" formControlName="wholesalePrice">
         </mat-form-field>
+         <ng-container *ngIf="productForm.get('wholesalePrice')?.touched && productForm.get('wholesalePrice')?.invalid">
+            <p class="error" *ngIf="productForm.get('wholesalePrice')?.errors?.['min']">
+                Wholesale price must be positive
+            </p>
+          </ng-container>
         <mat-form-field class="d-block" appearance="fill">
             <mat-label>Quantity: </mat-label>
             <input type="number" matInput placeholder="1" formControlName="quantity">
         </mat-form-field>
-        <button mat-flat-button color="primary" class="button" type="submit">Add</button>
+        <ng-container *ngIf="productForm.get('quantity')?.touched && productForm.get('quantity')?.invalid">
+            <p class="error" *ngIf="productForm.get('quantity')?.errors?.['min']">
+                Quantity must be positive
+            </p>
+        </ng-container>
+    <button mat-flat-button color="primary" class="button" type="submit" [disabled]="!productForm.valid">Add</button>
     </form>
 </div>

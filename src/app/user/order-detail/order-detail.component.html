@@ -1,31 +1,58 @@
 
-<div class="order-layout">
-    <h2 style="text-align: center;">Order details</h2>
-    <p><strong>Order ID:</strong> {{ orderDetails?.orderId }}</p>
-    <p><strong>Date placed:</strong> {{ orderDetails?.datePlaced }}</p>
-    <p><strong>Status:</strong> {{ orderDetails?.orderStatus }}</p>
-    <!-- <p><strong>Retail Price:</strong> ${{ product?.retailPrice }}</p> -->
-  <div *ngFor="let item of orderDetails?.orderItems" class="card mb-3 p-3 d-flex justify-content-between align-items-center shadow-sm">
-    <div>
-      <h5 class="mb-1"><strong>Item #{{ item.itemId }}</strong></h5>
-      <p class="mb-0">Product ID: {{ item.productId }}</p>
-      <p class="mb-0">Quantity: {{ item.quantity }}</p>
-      <p class="mb-0">Purchase Price: ${{ item.purchasePrice }}</p>
-      <p class="mb-0">Wholesale Price: ${{ item.wholesalePrice }}</p>
-    </div>
+<div class="order-layout" *ngIf="orderDetails">
+    <h1 style="text-align: center;">Order details</h1>
 
-    <!-- Actions -->
-    <div class="text-end">
-      <button class="btn btn-link p-0 mb-1" (click)="openProductDetail(item.productId)">
-        View Product
-      </button>
-    </div>
-  </div>
-
-  <!-- Cancel Button -->
-  <div class="mt-4 text-center">
-    <button class="btn btn-danger" (click)="cancelOrder(orderDetails?.orderId)" [disabled]="orderDetails?.orderStatus === 'Cancelled'">
-      Cancel Order
+    <button class="button-style" mat-raised-button  style="margin-bottom: 1em;" (click)="cancelOrder(orderDetails.orderId)" [disabled]="orderDetails.orderStatus != 'Processing'">
+      Cancel this order
     </button>
-  </div>
+  
+    <p><strong>Order ID:</strong> {{ orderDetails.orderId }}</p>
+    <p><strong>Date placed:</strong> {{ orderDetails.datePlaced }}</p>
+    <p><strong>Status:</strong> {{ orderDetails.orderStatus }}</p>
+
+    <h1 style="text-align: center;">Order items</h1>
+
+      <table mat-table [dataSource]="orderDetails.orderItems" >
+        <ng-container matColumnDef="itemId">
+            <th mat-header-cell *matHeaderCellDef> Item ID </th>
+            <td mat-cell *matCellDef="let item"> {{item.itemId}} </td>
+        </ng-container>       
+        <ng-container matColumnDef="productId">
+            <th mat-header-cell *matHeaderCellDef> Product ID </th>
+            <td mat-cell *matCellDef="let item"> {{item.productId}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name</th>
+            <td mat-cell *matCellDef="let product"> {{product.name}}</td>
+        </ng-container> -->
+            <!-- <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let product"> {{product.description}}</td>
+        </ng-container> -->
+            <ng-container matColumnDef="retailPrice">
+            <th mat-header-cell *matHeaderCellDef> Retail price</th>
+            <td mat-cell *matCellDef="let item"> {{item.retailPrice}}</td>
+        </ng-container>
+        <ng-container matColumnDef="wholesalePrice">
+            <th mat-header-cell *matHeaderCellDef> Wholesale price</th>
+            <td mat-cell *matCellDef="let item"> {{item.wholesalePrice}}</td>
+        </ng-container>
+            <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let item"> {{item.quantity}}</td>
+            
+        </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let product">
+            <button class="button-style" mat-raised-button>
+                <a routerLink="/products/{{product.productId}}">View product</a>
+            </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
 </div>
