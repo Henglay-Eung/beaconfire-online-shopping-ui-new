@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +22,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-  const {username, password} = this.loginForm.value;
-
+    const {username, password} = this.loginForm.value;
     if (!username || !password) {
       return;
     }
-
     this.authService.login(username, password).subscribe(data => {
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
@@ -37,8 +36,14 @@ export class LoginComponent implements OnInit {
       } else {
          this.router.navigate(['']);
       }
-     
-    })
+    }, (e) => {
+      Swal.fire({
+        title: 'Error!',
+        text: e.error.error,
+        icon: 'error',
+        confirmButtonColor: 'red'
+      })
+    });
   }
 
 }

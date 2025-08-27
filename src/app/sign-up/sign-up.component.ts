@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -38,7 +39,14 @@ export class SignUpComponent implements OnInit {
         localStorage.setItem('username', data.username)
         this.router.navigate(['']);
       })
-    })
+    }, (e) => {
+        Swal.fire({
+          title: 'Error!',
+          text: e.error.error,
+          icon: 'error',
+          confirmButtonColor: 'red'
+        })
+    });
   }
 
 }

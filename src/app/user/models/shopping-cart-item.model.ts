@@ -1,4 +1,5 @@
 export interface ShoppingCartItem {
+    id: number,
     productId: number;
     name: string;
     description: string;

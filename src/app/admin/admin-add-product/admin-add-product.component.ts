@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AdminProductService } from '../services/admin-product.service';
 import { CreateProduct, Product } from 'src/app/user/models/product.model';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-add-product',
@@ -34,6 +35,13 @@ export class AdminAddProductComponent implements OnInit {
     const product = this.productForm.value as CreateProduct;
     this.adminProductService.addNewProduct(product).subscribe(() => {
       this.router.navigate(['/admin/products']);
+    }, (e) => {
+       Swal.fire({
+        title: 'Error!',
+        text: e.error.error,
+        icon: 'error',
+        confirmButtonColor: 'red'
+      })
     })
   }
 

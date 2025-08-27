@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, from, map, Observable, of, take, tap } from 'rxjs';
-import { Product } from '../../models/product.model';
+import { Product, ShoppingCartItemUser } from '../../models/product.model';
 import { BASE_API_ENDPOINT } from 'src/app/config/base-api';
 import { ApiResponse } from 'src/app/models/api-response.model';
 

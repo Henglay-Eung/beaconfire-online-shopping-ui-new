@@ -31,6 +31,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { HomepageComponent } from './user/homepage/homepage.component';
 import { AdminInsightComponent } from './admin/admin-insight/admin-insight.component';
 import { InsightsComponent } from './user/insights/insights.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { InsightsComponent } from './user/insights/insights.component';
     MatInputModule,
     MatIconModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
   ],
   providers: [
     {

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AdminProductService } from '../services/admin-product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminProduct, UpdateProduct } from 'src/app/user/models/product.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-update-product',
@@ -43,10 +44,24 @@ export class AdminUpdateProductComponent implements OnInit {
   }
 
   update(): void {
-    const updatedProduct = this.productForm.value as UpdateProduct;
-    this.adminProductService.updateProduct(this.id, updatedProduct).subscribe(() => {
-      this.router.navigate(['/admin/products']);
-    })
+    Swal.fire({
+          title: 'Are you sure?',
+          text: 'You won’t be able to revert this',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, update the product!',
+          cancelButtonText: 'Cancel',
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+        }).then((result) => {
+          if (result.isConfirmed) {
+             const updatedProduct = this.productForm.value as UpdateProduct;
+            this.adminProductService.updateProduct(this.id, updatedProduct).subscribe(() => {
+              this.router.navigate(['/admin/products']);
+            })
+          }
+        });
+   
   }
 
 }

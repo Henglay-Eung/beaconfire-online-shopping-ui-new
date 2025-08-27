@@ -1,6 +1,6 @@
 .order-layout {
-  display: flex;
-  flex-direction: column; 
+  /* display: flex;
+  flex-direction: column;  */
 
   margin-top: 1%;
   margin-left: auto;
@@ -17,10 +17,20 @@
     display: block;
 }
 
-.button {
-  width: 100%;
-}
 
 .form {
   width: 80%;
+}
+
+.button-style {
+  background-color: #005cbb;
+  color: white;
+}
+table {
+  width: 100%;
+}
+.button-style a {
+  background-color: #005cbb;
+  color: white;
+  text-decoration: none;
 }

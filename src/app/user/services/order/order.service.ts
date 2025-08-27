@@ -58,7 +58,7 @@ export class OrderService {
     return this.http.patch<void>(BASE_API_ENDPOINT + this.CURR_ENDPOINT + 'cancel/' + id, {});
   }
 
-  placeAnOrder(item: CreateOrder): Observable<OrderDetails> {
-    return this.http.post<OrderDetails>(BASE_API_ENDPOINT + this.CURR_ENDPOINT, item);
+  placeAnOrder(item: CreateOrder): Observable<ApiResponse<OrderDetails>> {
+    return this.http.post<ApiResponse<OrderDetails>>(BASE_API_ENDPOINT + this.CURR_ENDPOINT, item);
   }
 }

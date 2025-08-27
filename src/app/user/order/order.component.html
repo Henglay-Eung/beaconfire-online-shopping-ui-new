@@ -19,7 +19,7 @@
             <button class="button-style" mat-raised-button style="margin-right: 8px;">
                 <a routerLink="/orders/{{order.orderId}}">View</a>
             </button>
-            <button (click)="cancelOrder(order.orderId)" class="button-style" mat-raised-button style="margin-right: 8px;">Cancel</button>
+            <button (click)="cancelOrder(order.orderId)" class="button-style" mat-raised-button style="margin-right: 8px;" [disabled]="order.orderStatus !== 'Processing'">Cancel</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

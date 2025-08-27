@@ -6,6 +6,10 @@ export interface Product {
     wholesalePrice: number;
 }
 
+export interface ShoppingCartItemUser extends Product {
+    id: number;
+}
+
 export interface CreateProduct extends Product {
     quantity: number;
 }

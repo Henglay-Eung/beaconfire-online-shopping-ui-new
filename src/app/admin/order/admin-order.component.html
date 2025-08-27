@@ -19,12 +19,20 @@
             <button class="button-style" mat-raised-button style="margin-right: 8px;">
                 <a routerLink="/admin/orders/{{order.orderId}}">View</a>
             </button>
-            <button (click)="completeOrder(order.orderId)" class="button-style" mat-raised-button style="margin-right: 8px;">Complete</button>
-            <button (click)="cancelOrder(order.orderId)" class="button-style" mat-raised-button>Cancel</button>
+            <button (click)="completeOrder(order.orderId)" [disabled]="order.orderStatus !== 'Processing'" class="button-style" mat-raised-button style="margin-right: 8px;">Complete</button>
+            <button (click)="cancelOrder(order.orderId)" [disabled]="order.orderStatus !== 'Processing'" class="button-style" mat-raised-button>Cancel</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
 </table>
+    <mat-paginator [length]="totalItems"
+              [pageSize]="pageSize"
+              [pageIndex]="currentPage"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="onPageChange($event)"
+              aria-label="Select page">
+        </mat-paginator>
 </div>
 

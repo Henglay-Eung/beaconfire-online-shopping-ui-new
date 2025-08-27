@@ -37,6 +37,6 @@
                 Quantity must be positive
             </p>
         </ng-container>
-        <button mat-flat-button color="primary" class="button">Update</button>
+        <button mat-flat-button color="primary" class="button" [disabled]="!this.productForm.valid">Update</button>
     </form>
 </div>

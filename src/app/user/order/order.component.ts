@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order/order.service';
 import { Order } from '../models/order.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-order',
@@ -24,10 +25,29 @@ export class OrderComponent implements OnInit {
     if (id === undefined) {
       return;
     }
-    this.orderService.cancelOrderById(id).subscribe(() => {
-      this.orders = this.orders.filter(order => order.orderId !== id)
-        alert("succeded");
-    })
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won’t be able to revert this',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, cancel the order!',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#3085d6', 
+      cancelButtonColor: '#d33'    
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.orderService.cancelOrderById(id).subscribe(() => {
+          this.orders = this.orders.map(order => {
+            if (order.orderId === id) {
+              order.orderStatus = "Canceled";
+            }
+            return order;
+          });
+        });
+      }
+    });
+
   }
 
 }

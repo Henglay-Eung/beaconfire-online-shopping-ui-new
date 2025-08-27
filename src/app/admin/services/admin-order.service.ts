@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BASE_ADMIN_API_ENDPOINT } from 'src/app/config/base-api';
-import { ApiResponse } from 'src/app/models/api-response.model';
+import { ApiResponse, PagableApiResponse } from 'src/app/models/api-response.model';
 import { OrderDetails } from 'src/app/user/models/order-details.model';
 import { Order, CreateOrder } from 'src/app/user/models/order.model';
 
@@ -15,37 +15,16 @@ export class AdminOrderService {
 
  CURR_ENDPOINT = 'orders/';
 
-  getOrderList(): Observable<ApiResponse<Order[]>> {
-    return this.http.get<ApiResponse<Order[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT);
-  }
-
-  orderDetails: OrderDetails = {
-    orderId: 1,
-    datePlaced: new Date(Date.now()),
-    orderStatus: "Completed",
-    orderItems: [
-      {
-        itemId: 1,
-        quantity: 1,
-        purchasePrice: 1,
-        wholesalePrice: 2,
-        productId: 1
-      },
-       {
-        itemId: 2,
-        quantity: 1,
-        purchasePrice: 1,
-        wholesalePrice: 2,
-        productId: 1
-      },
-       {
-        itemId: 3,
-        quantity: 1,
-        purchasePrice: 1,
-        wholesalePrice: 2,
-        productId: 1
-      }
-    ]
+  getOrderList(page: number, pageSize: number): Observable<PagableApiResponse<Order[]>> {
+    let url = BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT;
+    if (page >= 0) {
+      url += `?page=${page}&`;
+    } 
+    if (pageSize >= 1) {
+      url += `pageSize=${pageSize}`;
+    } 
+    
+    return this.http.get<PagableApiResponse<Order[]>>(url);
   }
 
   getOrderDetailsById(id: number): Observable<ApiResponse<OrderDetails>> {
@@ -56,8 +35,8 @@ export class AdminOrderService {
     return this.http.patch<void>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'complete/' + id, {});
   }
 
-  cancelOrderById(id: number): Observable<void> {
-    return this.http.patch<void>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'cancel/' + id, {});
+  cancelOrderById(id: number): Observable<ApiResponse<OrderDetails>> {
+    return this.http.patch<ApiResponse<OrderDetails>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'cancel/' + id, {});
   }
 
 }
