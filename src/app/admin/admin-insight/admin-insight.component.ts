@@ -19,6 +19,7 @@ export class AdminInsightComponent implements OnInit {
     productSoldList: ProductSold[] = [];
     productSaleDisplayedColumns: string[] = ['productId', 'name', 'description', 'retailPrice', 'wholesalePrice', 'saleCount'];
 
+    totalSoldItems = 0;
 
   ngOnInit(): void {
     this.adminProductService.getProductProfitList().subscribe(res => {
@@ -28,7 +29,9 @@ export class AdminInsightComponent implements OnInit {
       this.top3ProductList = res.data;
     })
     this.adminProductService.getProductSoldList().subscribe(res => {
-      this.productSoldList = res.data;
+
+      this.totalSoldItems = res.data
+
     })
   }
 

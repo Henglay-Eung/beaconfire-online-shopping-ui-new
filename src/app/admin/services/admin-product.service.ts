@@ -63,8 +63,8 @@ export class AdminProductService {
     return this.http.get<ApiResponse<ProductSold[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'popular/3');
   }
 
-  getProductSoldList(): Observable<ApiResponse<ProductSold[]>> {
-    return this.http.get<ApiResponse<ProductSold[]>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'sold');
+  getProductSoldList(): Observable<ApiResponse<number>> {
+    return this.http.get<ApiResponse<number>>(BASE_ADMIN_API_ENDPOINT + this.CURR_ENDPOINT + 'sold');
   }
 
   addNewProduct(product: CreateProduct) {
