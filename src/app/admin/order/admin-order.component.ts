@@ -22,7 +22,7 @@ export class AdminOrderComponent implements OnInit {
     'actions',
   ];
   orders: Order[] = [];
-  currentPage: number = 1;
+  currentPage: number = 0;
   pageSize: number = 5;
   totalItems: number = 1;
   totalPages: number = 1;
@@ -32,13 +32,15 @@ export class AdminOrderComponent implements OnInit {
   }
 
   loadData(): void {
-    this.adminOrderService.getOrderList(this.currentPage, this.pageSize).subscribe((res) => {
-      this.orders = res.data;
-      this.currentPage = res.currentPage;
-      this.pageSize = res.pageSize;
-      this.totalItems = res.totalItems;
-      this.totalPages = res.totalPages;
-    });
+    this.adminOrderService
+      .getOrderList(this.currentPage, this.pageSize)
+      .subscribe((res) => {
+        this.orders = res.data;
+        this.currentPage = res.currentPage;
+        this.pageSize = res.pageSize;
+        this.totalItems = res.totalItems;
+        this.totalPages = res.totalPages;
+      });
   }
 
   completeOrder(id: number) {
@@ -91,7 +93,6 @@ export class AdminOrderComponent implements OnInit {
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex; // paginator is 0-based
     this.pageSize = event.pageSize;
-    console.log(event);
     this.loadData(); // call backend again with new params
   }
 }

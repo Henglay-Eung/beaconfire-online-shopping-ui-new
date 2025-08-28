@@ -30,41 +30,41 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: InsightsComponent
+        component: InsightsComponent,
       },
       {
         path: 'products',
-        component: ProductComponent
+        component: ProductComponent,
       },
       {
         path: 'products/:id',
-        component: ProductDetailComponent
+        component: ProductDetailComponent,
       },
       {
         path: 'shopping-cart',
-        component: ShoppingCartComponent
+        component: ShoppingCartComponent,
       },
       {
         path: 'watchlist',
-        component: WatchlistComponent
+        component: WatchlistComponent,
       },
       {
         path: 'orders',
-        component: OrderComponent
-      },  
+        component: OrderComponent,
+      },
       {
         path: 'orders/:id',
-        component: OrderDetailComponent
-      }, 
-    ]
-  }, 
+        component: OrderDetailComponent,
+      },
+    ],
+  },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'sign-up',
-    component: SignUpComponent
+    component: SignUpComponent,
   },
   {
     path: 'admin',
@@ -100,13 +100,16 @@ const routes: Routes = [
         path: 'products/:id',
         component: AdminProductDetailsComponent,
       },
-
-    ]
-  }
+    ],
+  },
+  {
+    path: '**',
+    component: LoginComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
